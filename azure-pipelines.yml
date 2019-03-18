@@ -3,25 +3,20 @@
 
 jobs:
 - job: string
-  timeoutInMinutes: number
-  cancelTimeoutInMinutes: number
-  strategy:
-    maxParallel: number
-    # note: `parallel` and `matrix` are mutually exclusive
-    # you may specify one or the other; including both is an error
-    parallel: number
-    matrix: { string: { string: string } }
-  pool:
-    name: string
-    demands: string | [ string ]
+  timeoutInMinutes: 10
+  cancelTimeoutInMinutes: 2
 
-  container: string
+pool:
+  vmImage: 'Ubuntu 16.04'
 
-  steps:
-    - script: echo Hello world
+strategy:
+  maxParallel: 3
+  parallel: 2
 
-# pool:
-#   vmImage: 'Ubuntu 16.04'
+container: string
+
+steps:
+  - script: echo Hello world
   
 # steps:
 # - task: NodeTool@0
