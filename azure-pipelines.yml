@@ -1,5 +1,25 @@
 # Build NodeJS Express app using Azure Pipelines
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript?view=vsts
+
+jobs:
+- job: string
+  timeoutInMinutes: number
+  cancelTimeoutInMinutes: number
+  strategy:
+    maxParallel: number
+    # note: `parallel` and `matrix` are mutually exclusive
+    # you may specify one or the other; including both is an error
+    parallel: number
+    matrix: { string: { string: string } }
+  pool:
+    name: string
+    demands: string | [ string ]
+
+  container: string
+
+  steps:
+    - script: echo Hello world
+    
 pool:
   vmImage: 'Ubuntu 16.04'
   
